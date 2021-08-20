@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mt-5">
+    {% for server in status %}
+    <div class="col sm-12 m-5 d-flex align-items-stretch justify-content-center">
+        <div class="card d-flex flex-fill">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-title text-center">
+                        <h1>
+                            {{ server }}
+                        </h1>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if status[server] %}
+                            <h2 class="text-success">Available</h2>
+                        {%  else %}
+                            <h2 class="text-danger">Offline</h2>
+                        {% endif %}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
