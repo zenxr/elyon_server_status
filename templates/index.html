@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<script>
+    window.setTimeout(function () {
+        window.location.reload();
+    }, 30000);
+</script>
+
 <div class="container">
     <div class="row align-items-end">
         {% for server_area in status %}
