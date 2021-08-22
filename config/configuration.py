@@ -11,8 +11,15 @@ CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
 server_info = {
     "servers" : {
-        "leticia" : "49.236.159.67",
-        "arquina" : "49.236.159.66"
+        "North America" : {
+            "leticia" : "49.236.159.67",
+            "arquina" : "49.236.159.66"
+        },
+        "Europe" : {
+            "entara " : "37.48.82.178",
+            "lenoir" : "37.48.82.179"
+        }
+        
     },
     "port" : "7801"
 }

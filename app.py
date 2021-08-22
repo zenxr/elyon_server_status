@@ -18,7 +18,7 @@ def main():
     app.run(host='0.0.0.0', port=configuration.APP_PORT)
 
 @app.route("/")
-def index():
+def get_index():
     status = gamestatus_service.get_server_stats()
     return render_template('index.html', status = json.loads(status))
 

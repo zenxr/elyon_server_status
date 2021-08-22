@@ -1,4 +1,5 @@
 import json
+from typing import DefaultDict
 import redis
 
 from config import configuration
@@ -23,10 +24,12 @@ def store_server_stats():
 def _fetch_server_stats():
     server_info = configuration.server_info
     server_stats = {}
-    for server_name in server_info['servers']:
-        server_address = server_info['servers'][server_name]
-        port = server_info['port']
-        server_stats[server_name.capitalize()] = check_server_available(server_address, port)
+    for server_area in server_info['servers']:
+        server_stats[server_area] = {}
+        for server_name in server_info['servers'][server_area]:
+            server_address = server_info['servers'][server_area][server_name]
+            port = server_info['port']
+            server_stats[server_area][server_name.capitalize()] = check_server_available(server_address, port)
     return json.dumps(server_stats)
 
 redis_store = _initialize_redis()
