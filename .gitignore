@@ -1,2 +1,4 @@
 __pycache__/
 .env/
+celerybeat-schedule
+config/games.py

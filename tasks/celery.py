@@ -25,5 +25,4 @@ def setup_periodic_tasks(celery_instance, **kwargs):
     '''
     Called after celery configuration is updated
     '''
-    # Calls update_server_status every 30 seconds.
-    celery_instance.add_periodic_task(30.0, update_server_status.s(), name='add every 30')
+    celery_instance.add_periodic_task(300.0, update_server_status.s(), name='add every 120')

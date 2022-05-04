@@ -9,39 +9,54 @@
 </script>
 
 <div class="container">
-    <div class="row align-items-end">
-        {% for server_area in status %}
-        <div class="col-sm-6">
-            <h1 class="display-2 text-center">{{ server_area }}</h1>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        {% for server_area in status %}
-        <div class="col-sm-6">
-            {% for server in status[server_area] %}
-            <div class="col sm-12 d-flex align-items-stretch justify-content-center">
-                <div class="card d-flex flex-fill">
-                    <div class="card-title text-center">
-                        <h1 class="display-4">
-                            {{ server }}
-                        </h2>
-                    </div>
-                    <div class="card-body text-center">
-                        {% if status[server_area][server] %}
-                            <h1 class="display-5 text-success">Available</h2>
-                        {%  else %}
-                            <h1 class="display-5 text-danger">Offline</h2>
-                        {% endif %}
-                        </h2>
-                    </div>
-                </div>
+   {% for game in status %}
+   <br/>
+   <div class="row align-items-start m-5">
+      <div class="col-sm-4 justify-content-end align-content-start p-1">
+         <h1 class="display-4 text-end">{{ game['name'] }}</h1> 
+      </div>
+      <div class="col-sm-8">
+         {% if game['categories'] %}
+            {% for category in game['categories'] %}
+               <div class="row justify-content-center">
+                  <h1 class="display-5 text-center text-muted">{{ category }}</h1>
+               </div>
+               {% for server in game['servers'] if server['category'] == category %}
+               <div class="row">
+                  <div class="col-sm-6">
+                     <h2>{{ server['name'] }}</h1>
+                  </div>
+                  <div class="col-sm-6 justify-content-end">
+                     {% if server['is_up'] %}
+                        <h2 class="text-success text-right">Available</h1>
+                     {%  else %}
+                        <h2 class="text-danger text-right">Offline</h1>
+                     {% endif %}
+                  </div>
+               </div>
+               {% endfor %}
+            {% endfor %}
+         {% else %}
+            {% for server in game['servers'] %}
+            <div class="row">
+               <div class="col-sm-6">
+                  <h2 class="display 6">{{ server['name'] }}</h1>
+               </div>
+               <div class="col-sm-6 align-items-end">
+                  {% if server['is_up'] %}
+                     <h2 class="text-success text-right">Available</h1>
+                  {%  else %}
+                     <h2 class="text-danger text-right">Offline</h1>
+                  {% endif %}
+               </div>
             </div>
             {% endfor %}
-        </div>
-        {% endfor %}
-
-    </div>
+         {% endif %}
+      </div>
+   </div>
+   <br/>
+   <br/>
+   {% endfor %}
 </div>
 
 {% endblock %}
