@@ -1,7 +1,8 @@
 import json
 import redis
 
-from config import configuration, games
+from config import configuration
+from config import games as games_config
 from util.test_tcp_connection import check_server_available
 
 def _initialize_redis():
@@ -21,7 +22,7 @@ def store_server_stats():
     redis_store.mset({ 'server_stats' : server_stats})
 
 def _fetch_server_stats():
-   games = [game.to_dict() for game in games]
+   games = [game.to_dict() for game in games_config.games]
    for game in games:
       for server in game['servers']:
          server_address = server['ip_address']
