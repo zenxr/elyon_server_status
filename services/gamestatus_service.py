@@ -3,7 +3,8 @@ import redis
 
 from config import configuration
 from config import games as games_config
-from util.test_tcp_connection import check_server_available
+from entities.game_entities import Game, GameServerCheckType
+from util.server_checks import check_tcp_available, check_udp_available
 
 def _initialize_redis():
     # if REDIS_HOST is not set, try local connection
@@ -18,17 +19,20 @@ def get_server_stats():
     return redis_store.get('server_stats').decode('utf-8')
 
 def store_server_stats():
-    server_stats = _fetch_server_stats()
+    games = games_config.games
+    for game in games:
+       _check_game_servers(game)
+    server_stats = json.dumps([game.serialize() for game in games])
     redis_store.mset({ 'server_stats' : server_stats})
 
-def _fetch_server_stats():
-   games = [game.to_dict() for game in games_config.games]
-   for game in games:
-      for server in game['servers']:
-         server_address = server['ip_address']
-         port = server['port']
-         server['is_up'] = check_server_available(server_address, port)
-   return json.dumps(games)
+def _check_game_servers(game: Game):
+   for server in game.servers:
+      if game.checkmethod == GameServerCheckType.TCP:
+         server.is_alive = check_tcp_available(server.host, server.port)
+      elif game.checkmethod == GameServerCheckType.RAW_SOCKET:
+         server.is_alive = check_udp_available(server.host, server.port)
+      else:
+         raise NotImplementedError(f'{game.checkmethod.name} is not yet supported.')
 
 redis_store = _initialize_redis()
 store_server_stats()

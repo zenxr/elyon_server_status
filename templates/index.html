@@ -27,7 +27,7 @@
                      <h2>{{ server['name'] }}</h1>
                   </div>
                   <div class="col-sm-6 justify-content-end">
-                     {% if server['is_up'] %}
+                     {% if server['is_alive'] %}
                         <h2 class="text-success text-right">Available</h1>
                      {%  else %}
                         <h2 class="text-danger text-right">Offline</h1>
@@ -43,7 +43,7 @@
                   <h2 class="display 6">{{ server['name'] }}</h1>
                </div>
                <div class="col-sm-6 align-items-end">
-                  {% if server['is_up'] %}
+                  {% if server['is_alive'] %}
                      <h2 class="text-success text-right">Available</h1>
                   {%  else %}
                      <h2 class="text-danger text-right">Offline</h1>
