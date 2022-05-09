@@ -4,12 +4,14 @@ Simple web application that displays the availability of a game's servers.
 
 # Requirements
 
-- docker and docker-compose
-- `docker-compose up -d` to run the application in detached mode
-
 ## Configuration
 
-Clone `config/games_example.py` to `config/games.py` and edit configuration to configure which game servers to monitor.
+Clone `config/games_example.py` to `config/games.py` and edit configuration to configure which game servers to monitor. Reference `games_example.py` for both configuring a game and adding servers to it for monitoring.
+
+## Running
+
+- docker and docker-compose
+- `docker-compose up -d` to run the application in detached mode
 
 # About
 
