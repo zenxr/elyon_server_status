@@ -9,7 +9,7 @@ elyon.add_server(name='b', host='127.0.0.1', port=80, category='North America')
 elyon.add_server(name='c', host='127.0.0.1', port=80, category='Europe')
 elyon.add_server(name='d', host='127.0.0.1', port=80, category='Europe')
 
-raiderz = Game(name='Raiderz', checkmethod=GameServerCheckType.RAW_SOCKET)
+raiderz = Game(name='Raiderz', checkmethod=GameServerCheckType.UDP)
 raiderz.add_server(name='primary', host='127.0.0.1', port=80)
 raiderz.add_server(name='secondary', host='127.0.0.1', port=80)
 

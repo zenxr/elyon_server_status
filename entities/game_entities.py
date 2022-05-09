@@ -5,7 +5,7 @@ from util.host_validator import assert_valid_host
 
 class GameServerCheckType(Enum):
    TCP = 1
-   RAW_SOCKET = 2
+   UDP = 2
 
 class Game(object):
    class GameServer(object):

@@ -29,7 +29,7 @@ def _check_game_servers(game: Game):
    for server in game.servers:
       if game.checkmethod == GameServerCheckType.TCP:
          server.is_alive = check_tcp_available(server.host, server.port)
-      elif game.checkmethod == GameServerCheckType.RAW_SOCKET:
+      elif game.checkmethod == GameServerCheckType.UDP:
          server.is_alive = check_udp_available(server.host, server.port)
       else:
          raise NotImplementedError(f'{game.checkmethod.name} is not yet supported.')
