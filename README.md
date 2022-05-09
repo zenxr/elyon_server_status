@@ -27,6 +27,6 @@ The web app is in flask and utilizes celery to schedule a single process that ch
 	- [ ] Full page refresh currently, instead use Ajax or similar to only refresh required DOM elements
 
 - [x] Only supports checking connections via TCP. Add support for UDP or custom methods.
+- [ ] Add support for checking servers via more complex UDP methods.
 - [ ] Update UI
 - [x] Support hostnames rather than just IP for more reliability of games that have changing IPs.
-

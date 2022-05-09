@@ -17,7 +17,7 @@ class Game(object):
          self.category = category
          self.is_alive = None
 
-      def serialize(self):
+      def to_dict(self):
          return {
             'name': self.name,
             'host': self.host,
@@ -47,11 +47,11 @@ class Game(object):
          if not server.category in self.categories:
             self.categories.append(server.category)
 
-   def serialize(self):
+   def to_dict(self):
       return {
          'name': self.name,
          'categories': self.categories,
          'checkmethod': self.checkmethod.name,
-         'servers': [server.serialize() for server in self.servers]
+         'servers': [server.to_dict() for server in self.servers]
       }
 
